@@ -142,17 +142,28 @@
         <label>4. 物件的類型 (最多兩個)</label>
         <div class="options" id="kindOptions"></div>
       </div>
-
-      <!-- 第4頁 -->
+      <!-- 新增：第4頁 -->
       <div class="step">
-        <label>5. 自備款 (現金) 大約：(萬)</label>
+          <label>5.車位需求</label>
+          <div class="options">
+            <label><input type="radio" name="parking" value="需求一車位"> 需求一車位</label>
+            <label><input type="radio" name="parking" value="需求一車位(不接受機械)"> 需求一車位 (不接受機械)</label>
+            <label><input type="radio" name="parking" value="需雙車位"> 需雙車位</label>
+            <label><input type="radio" name="parking" value="不需要車位"> 不需要車位</label>
+          </div>
+      </div>
+
+
+      <!-- 第5頁 -->
+      <div class="step">
+        <label>6. 自備款 (現金) 大約：(萬)</label>
         <input type="number" name="budgetCash">
         <small>許多人不知道能負擔多少，這部分可讓小張更明確幫您規劃目標，提供給您最適合您的房源。</small>
       </div>
 
-      <!-- 第5頁 -->
+      <!-- 第6頁 -->
       <div class="step">
-        <label>6. 若是大樓的話需要幾房呢？</label>
+        <label>7. 若是大樓的話需要幾房呢？</label>
         <div class="options">
           <label><input type="checkbox" name="roomNeed" value="我選透天"> 我選透天</label>
           <label><input type="checkbox" name="roomNeed" value="1房"> 1房</label>
@@ -161,9 +172,9 @@
         </div>
       </div>
 
-      <!-- 第6頁 -->
+      <!-- 第7頁 -->
       <div class="step">
-        <label>7. 希望的屋齡：</label>
+        <label>8. 希望的屋齡：</label>
         <div class="options">
           <label><input type="radio" name="houseAge" value="6年內"> 6年內</label>
           <label><input type="radio" name="houseAge" value="10年內"> 10年內</label>
@@ -174,17 +185,17 @@
         </div>
       </div>
 
-      <!-- 第7頁 (8 & 9 同頁) -->
+      <!-- 第8頁 (9 & 10 同頁) -->
       <div class="step">
-        <label>8. 是否曾經看過哪些房子有喜歡的呢？</label>
+        <label>9. 是否曾經看過哪些房子有喜歡的呢？</label>
         <textarea name="likedProperties" rows="3"></textarea>
-        <label>9. 有無比較注重的細節呢？</label>
+        <label>10. 有無比較注重的細節呢？</label>
         <textarea name="importantDetails" rows="3"></textarea>
       </div>
 
-      <!-- 第8頁 -->
+      <!-- 第9頁 -->
       <div class="step">
-        <label style="font-size:1.2rem;">10. 請留下您的聯絡資料</label>
+        <label style="font-size:1.2rem;">11. 請留下您的聯絡資料</label>
         <p>小張會根據需求篩選最符合的物件給您</p>
         <input type="text" name="name" placeholder="怎麼稱呼您：" required>
         <input type="tel" name="phone" placeholder="手機電話：" required>
