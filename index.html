@@ -219,15 +219,25 @@
 
     // 產生多選
     function genChoices(id, opts, max) {
-      const container = document.getElementById(id);
-      opts.forEach(opt => {
-        const lbl = document.createElement('label');
-        const cb = document.createElement('input'); cb.type = 'checkbox'; cb.value = opt;
-        cb.addEventListener('change', () => limitSel(id, max));
-        lbl.append(cb, ' ' + opt);
-        container.append(lbl);
-      });
-    }
+  const container = document.getElementById(id);
+  let nameAttr = '';
+
+  // 根據不同的區塊設定 name 屬性
+  if (id === 'areaOptions') nameAttr = 'area[]';
+  else if (id === 'typeOptions') nameAttr = 'type[]';
+  else if (id === 'kindOptions') nameAttr = 'kind[]';
+
+  opts.forEach(opt => {
+    const lbl = document.createElement('label');
+    const cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.value = opt;
+    cb.name = nameAttr;  // ✅ 加入這行，讓 checkbox 有正確的 name
+    cb.addEventListener('change', () => limitSel(id, max));
+    lbl.append(cb, ' ' + opt);
+    container.append(lbl);
+  });
+}
     function limitSel(id, max) {
       const cont = document.getElementById(id);
       const cbs = cont.querySelectorAll('input[type=checkbox]');
