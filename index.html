@@ -121,7 +121,7 @@
     <form id="multiStepForm" action="https://formsubmit.co/s3737123456789@gmail.com" method="POST">
       <!-- 第1頁 -->
       <div class="step active">
-        <label>1. 看房看多久了呢？</label>
+        <h2>第1題：看房看多久了呢？</h2>
         <div class="options">
           <label><input type="radio" name="watchTime" value="最近才剛開始看"> 最近才剛開始看</label>
           <label><input type="radio" name="watchTime" value="已經看了一陣子了"> 已經看了一陣子了</label>
@@ -130,21 +130,21 @@
 
       <!-- 第2頁 -->
       <div class="step">
-        <label>2. 偏好區域 (最多選三個)</label>
+        <h2>第2題：偏好區域 (最多選三個)</h2>
         <div class="options" id="areaOptions"></div>
         <input type="text" name="otherArea" placeholder="是否還有其他特定區域呢？">
       </div>
 
       <!-- 第3頁 (3 & 4 同頁) -->
       <div class="step">
-        <label>3. 物件的種類 (最多兩個)</label>
+        <h2>第3題：物件的種類 (最多兩個)</h2>
         <div class="options" id="typeOptions"></div>
-        <label>4. 物件的類型 (最多兩個)</label>
+        <h2>第4題：物件的類型 (最多兩個)</h2>
         <div class="options" id="kindOptions"></div>
       </div>
       <!-- 新增：第4頁 -->
       <div class="step">
-          <label>5.車位需求</label>
+        <h2>第5題：是否有車位需求</h2>
           <div class="options">
             <label><input type="radio" name="parking" value="需求一車位"> 需求一車位</label>
             <label><input type="radio" name="parking" value="需求一車位(不接受機械)"> 需求一車位 (不接受機械)</label>
@@ -156,14 +156,14 @@
 
       <!-- 第5頁 -->
       <div class="step">
-        <label>6. 自備款 (現金) 大約：(萬)</label>
+        <h2>第6題：自備款 (現金) 大約：(萬)</h2>
         <input type="number" name="budgetCash">
         <small>許多人不知道能負擔多少，這部分可讓小張更明確幫您規劃目標，提供給您最適合您的房源。</small>
       </div>
 
       <!-- 第6頁 -->
       <div class="step">
-        <label>7. 若是大樓的話需要幾房呢？</label>
+        <h2>第7題：若是大樓的話需要幾房呢？</h2>
         <div class="options">
           <label><input type="checkbox" name="roomNeed" value="我選透天"> 我選透天</label>
           <label><input type="checkbox" name="roomNeed" value="1房"> 1房</label>
@@ -174,7 +174,7 @@
 
       <!-- 第7頁 -->
       <div class="step">
-        <label>8. 希望的屋齡：</label>
+        <h2>第8題：希望的屋齡</h2>
         <div class="options">
           <label><input type="radio" name="houseAge" value="6年內"> 6年內</label>
           <label><input type="radio" name="houseAge" value="10年內"> 10年內</label>
@@ -187,15 +187,15 @@
 
       <!-- 第8頁 (9 & 10 同頁) -->
       <div class="step">
-        <label>9. 是否曾經看過哪些房子有喜歡的呢？</label>
+        <h2>第9題：是否曾經看過哪些房子有喜歡的呢？</h2>
         <textarea name="likedProperties" rows="3"></textarea>
-        <label>10. 有無比較注重的細節呢？</label>
+        <h2>第10題：有無比較注重的細節呢？</h2>
         <textarea name="importantDetails" rows="3"></textarea>
       </div>
 
       <!-- 第9頁 -->
       <div class="step">
-        <label style="font-size:1.2rem;">11. 請留下您的聯絡資料</label>
+        <label style="font-size:1.2rem;">第11題:請留下您的聯絡資料</label>
         <p>小張會根據需求篩選最符合的物件給您</p>
         <input type="text" name="name" placeholder="怎麼稱呼您：" required>
         <input type="tel" name="phone" placeholder="手機電話：" required>
