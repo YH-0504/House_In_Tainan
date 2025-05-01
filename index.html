@@ -131,16 +131,16 @@
       <!-- 第2頁 -->
       <div class="step">
         <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第2題：偏好區域 (最多選三個)</h2>
-        <div class="options" id="地區"></div>
-        <input type="text" name="otherArea" placeholder="是否還有其他特定區域呢？">
+        <div class="options" id="areaOptions"></div>
+        <input type="text" name="是否有其他區域?" placeholder="是否還有其他特定區域呢？">
       </div>
 
       <!-- 第3頁 (3 & 4 同頁) -->
       <div class="step">
         <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第3題：物件的種類 (最多兩個)</h2>
-        <div class="options" id="物件種類"></div>
+        <div class="options" id="typeOptions"></div>
         <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第4題：物件的類型 (最多兩個)</h2>
-        <div class="options" id="物件類型"></div>
+        <div class="options" id="kindOptions"></div>
       </div>
       <!-- 新增：第4頁 -->
       <div class="step">
@@ -259,9 +259,9 @@
   let nameAttr = '';
 
   // 設定每一組選項的 name
-  if (id === 'areaOptions') nameAttr = 'preferredAreas[]';
-  else if (id === 'typeOptions') nameAttr = 'propertyTypes[]';
-  else if (id === 'kindOptions') nameAttr = 'propertyKinds[]';
+  if (id === 'areaOptions') nameAttr = '地區[]';
+  else if (id === 'typeOptions') nameAttr = '物件種類[]';
+  else if (id === 'kindOptions') nameAttr = '物件類型[]';
 
   opts.forEach(opt => {
     const lbl = document.createElement('label');
@@ -284,6 +284,7 @@
     genChoices('areaOptions', areaOpts, 3);
     genChoices('typeOptions', typeOpts, 2);
     genChoices('kindOptions', kindOpts, 2);
+
 
     // 分頁邏輯
     let current = 0;
