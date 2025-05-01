@@ -121,84 +121,109 @@
     <form id="multiStepForm" action="https://formsubmit.co/s3737123456789@gmail.com" method="POST">
       <!-- 第1頁 -->
       <div class="step active">
-        <h2>第1題：看房看多久了呢？</h2>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第1題：看房看多久了呢？</h2>
         <div class="options">
-          <label><input type="radio" name="watchTime" value="最近才剛開始看"> 最近才剛開始看</label>
-          <label><input type="radio" name="watchTime" value="已經看了一陣子了"> 已經看了一陣子了</label>
+          <label><input type="radio" name="看房狀況" value="最近才剛開始看"> 最近才剛開始看</label>
+          <label><input type="radio" name="看房狀況" value="已經看了一陣子了"> 已經看了一陣子了</label>
         </div>
       </div>
 
       <!-- 第2頁 -->
       <div class="step">
-        <h2>第2題：偏好區域 (最多選三個)</h2>
-        <div class="options" id="areaOptions"></div>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第2題：偏好區域 (最多選三個)</h2>
+        <div class="options" id="地區"></div>
         <input type="text" name="otherArea" placeholder="是否還有其他特定區域呢？">
       </div>
 
       <!-- 第3頁 (3 & 4 同頁) -->
       <div class="step">
-        <h2>第3題：物件的種類 (最多兩個)</h2>
-        <div class="options" id="typeOptions"></div>
-        <h2>第4題：物件的類型 (最多兩個)</h2>
-        <div class="options" id="kindOptions"></div>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第3題：物件的種類 (最多兩個)</h2>
+        <div class="options" id="物件種類"></div>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第4題：物件的類型 (最多兩個)</h2>
+        <div class="options" id="物件類型"></div>
       </div>
       <!-- 新增：第4頁 -->
       <div class="step">
-        <h2>第5題：是否有車位需求</h2>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第5題：是否有車位需求</h2>
           <div class="options">
-            <label><input type="radio" name="parking" value="需求一車位"> 需求一車位</label>
-            <label><input type="radio" name="parking" value="需求一車位(不接受機械)"> 需求一車位 (不接受機械)</label>
-            <label><input type="radio" name="parking" value="需雙車位"> 需雙車位</label>
-            <label><input type="radio" name="parking" value="不需要車位"> 不需要車位</label>
+            <label><input type="radio" name="車位" value="需求一車位"> 需求一車位</label>
+            <label><input type="radio" name="車位" value="需求一車位(不接受機械)"> 需求一車位 (不接受機械)</label>
+            <label><input type="radio" name="車位" value="需雙車位"> 需雙車位</label>
+            <label><input type="radio" name="車位" value="不需要車位"> 不需要車位</label>
           </div>
       </div>
 
 
       <!-- 第5頁 -->
       <div class="step">
-        <h2>第6題：自備款 (現金) 大約：(萬)</h2>
-        <input type="number" name="budgetCash">
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第6題：自備款 (現金) 大約：(萬)</h2>
+        <input type="number" name="自備款">
         <small>許多人不知道能負擔多少，這部分可讓小張更明確幫您規劃目標，提供給您最適合您的房源。</small>
       </div>
-
-      <!-- 第6頁 -->
+      
+      
+      <!-- 第6頁(7 & 8 同頁) -->
       <div class="step">
-        <h2>第7題：若是大樓的話需要幾房呢？</h2>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第7題：個人有房或房貸嗎？</h2>
+        <p style="font-size: 0.85rem; color: #555;">
+          備註：113/9/19管制-第二間貸款5成、第三間貸款3成<br>
+          ------選填結果大大決定您貸款條件及貸款成數-----
+        </p>
         <div class="options">
-          <label><input type="checkbox" name="roomNeed" value="我選透天"> 我選透天</label>
-          <label><input type="checkbox" name="roomNeed" value="1房"> 1房</label>
-          <label><input type="checkbox" name="roomNeed" value="2房"> 2房</label>
-          <label><input type="checkbox" name="roomNeed" value="3房以上"> 3房以上</label>
+          <label><input type="radio" name="個人名下" value="名下無房"> 名下無房</label>
+          <label><input type="radio" name="個人名下" value="名下有房(無貸款)"> 名下有房（無貸款）</label>
+          <label><input type="radio" name="個人名下" value="名下有房(有貸款)"> 名下有房（有貸款）</label>
         </div>
+        <input type="text" name="個人特殊狀況" placeholder="其他特殊狀況（可選填）">
+
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第8題：配偶有房或房貸嗎？</h2>
+        <div class="options">
+          <label><input type="radio" name="配偶名下" value="配偶名下無房"> 配偶名下無房</label>
+          <label><input type="radio" name="配偶名下" value="配偶名下有房(無貸款)"> 配偶名下有房（無貸款）</label>
+          <label><input type="radio" name="配偶名下" value="配偶名下有房(有貸款)"> 配偶名下有房（有貸款）</label>
+        </div>
+        <input type="text" name="配偶特殊狀況" placeholder="其他特殊狀況（可選填）">
       </div>
+
 
       <!-- 第7頁 -->
       <div class="step">
-        <h2>第8題：希望的屋齡</h2>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第9題：若是大樓的話需要幾房呢？</h2>
         <div class="options">
-          <label><input type="radio" name="houseAge" value="6年內"> 6年內</label>
-          <label><input type="radio" name="houseAge" value="10年內"> 10年內</label>
-          <label><input type="radio" name="houseAge" value="15年內"> 15年內</label>
-          <label><input type="radio" name="houseAge" value="20年內"> 20年內</label>
-          <label><input type="radio" name="houseAge" value="21-35年內"> 21-35年內都可以</label>
-          <label><input type="radio" name="houseAge" value="不在意"> 不在意屋齡，只要地點好</label>
+          <label><input type="checkbox" name="房間數" value="我選透天"> 我選透天</label>
+          <label><input type="checkbox" name="房間數" value="1房"> 1房</label>
+          <label><input type="checkbox" name="房間數" value="2房"> 2房</label>
+          <label><input type="checkbox" name="房間數" value="3房以上"> 3房以上</label>
         </div>
       </div>
 
-      <!-- 第8頁 (9 & 10 同頁) -->
+      <!-- 第8頁 -->
       <div class="step">
-        <h2>第9題：是否曾經看過哪些房子有喜歡的呢？</h2>
-        <textarea name="likedProperties" rows="3"></textarea>
-        <h2>第10題：有無比較注重的細節呢？</h2>
-        <textarea name="importantDetails" rows="3"></textarea>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第10題：希望的屋齡</h2>
+        <div class="options">
+          <label><input type="radio" name="屋齡" value="6年內"> 6年內</label>
+          <label><input type="radio" name="屋齡" value="10年內"> 10年內</label>
+          <label><input type="radio" name="屋齡" value="15年內"> 15年內</label>
+          <label><input type="radio" name="屋齡" value="20年內"> 20年內</label>
+          <label><input type="radio" name="屋齡" value="21-35年內"> 21-35年內都可以</label>
+          <label><input type="radio" name="屋齡" value="不在意"> 不在意屋齡，只要地點好</label>
+        </div>
       </div>
 
-      <!-- 第9頁 -->
+      <!-- 第9頁 (11 & 12 同頁) -->
       <div class="step">
-        <label style="font-size:1.2rem;">第11題:請留下您的聯絡資料</label>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第11題：是否曾經看過哪些房子有喜歡的呢？</h2>
+        <textarea name="是否有喜歡的房子" rows="3"></textarea>
+        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第12題：有無比較注重的細節呢？</h2>
+        <textarea name="注重的細節" rows="3"></textarea>
+      </div>
+
+      <!-- 第10頁 -->
+      <div class="step">
+        <label style="font-size:1.2rem;">第13題:請留下您的聯絡資料</label>
         <p>小張會根據需求篩選最符合的物件給您</p>
-        <input type="text" name="name" placeholder="怎麼稱呼您：" required>
-        <input type="tel" name="phone" placeholder="手機電話：" required>
+        <input type="text" name="姓名" placeholder="怎麼稱呼您：" required>
+        <input type="tel" name="電話" placeholder="手機電話：" required>
         <input type="text" name="lineID" placeholder="LINE ID：" required>
         <small style="display: block; margin: 1rem 0; font-size: 0.85rem; color: #555;">
   個人資料保護協議：您所填入的資料僅授權 <strong>台南看好房 - 張英泓</strong> 本人查閱，僅用於聯絡與服務使用，不會有個資外洩之疑慮，請安心填寫。</small>
