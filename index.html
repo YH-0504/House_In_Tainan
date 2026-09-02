@@ -171,9 +171,10 @@
       <div id="progressFill" class="progress-bar-fill"></div>
     </div>
 
-    <form id="multiStepForm" action="https://formsubmit.co/s3737123456789@gmail.com" method="POST">
+    <form id="multiStepForm">
       
-      <div class="step" data-step="1">
+      <!-- 第1頁：第 1 題 (必填) -->
+      <div class="step active" data-step="1">
         <div class="title-row">
           <h2 class="question-title">第 1 題：看房看多久了呢？</h2>
           <span class="badge-required">*(必填)</span>
@@ -184,6 +185,7 @@
         </div>
       </div>
 
+      <!-- 第2頁：第 2 題 (必填) -->
       <div class="step" data-step="2">
         <div class="title-row">
           <h2 class="question-title">第 2 題：偏好區域（最多選三個）</h2>
@@ -193,6 +195,7 @@
         <input type="text" id="otherAreaInput" name="是否有其他區域" placeholder="若有其他特定區域請填寫於此">
       </div>
 
+      <!-- 第3頁：第 3 題 (必填) & 第 4 題 (選填) -->
       <div class="step" data-step="3">
         <div class="title-row">
           <h2 class="question-title">第 3 題：物件的種類（最多選兩個）</h2>
@@ -206,6 +209,7 @@
         <div class="options grid-options" id="kindOptions"></div>
       </div>
 
+      <!-- 第4頁：第 5 題 (必填) -->
       <div class="step" data-step="4">
         <div class="title-row">
           <h2 class="question-title">第 5 題：是否有車位需求</h2>
@@ -219,6 +223,7 @@
         </div>
       </div>
 
+      <!-- 第5頁：第 6 題 (必填) -->
       <div class="step" data-step="5">
         <div class="title-row">
           <h2 class="question-title">第 6 題：自備款 (現金) 大約：(萬)</h2>
@@ -228,6 +233,7 @@
         <div class="tip-box">在銀行限貸的時代下，現金是買房"最重要"的指標，這樣小張才能匹配最適合的房子給您。</div>
       </div>
 
+      <!-- 第6頁：第 7 & 8 題 (選填/預設) -->
       <div class="step" data-step="6">
         <div class="title-row">
           <h2 class="question-title">第 7 題：個人名下房屋與房貸狀況</h2>
@@ -251,6 +257,7 @@
         <input type="text" name="配偶特殊狀況" placeholder="配偶其他特殊狀況（選填）">
       </div>
 
+      <!-- 第7頁：第 9 題 (必填) -->
       <div class="step" data-step="7">
         <div class="title-row">
           <h2 class="question-title">第 9 題：若是大樓的話需要幾房呢？</h2>
@@ -264,6 +271,7 @@
         </div>
       </div>
 
+      <!-- 第8頁：第 10 題 (必填) -->
       <div class="step" data-step="8">
         <div class="title-row">
           <h2 class="question-title">第 10 題：希望的屋齡</h2>
@@ -279,6 +287,7 @@
         </div>
       </div>
 
+      <!-- 第9頁：第 11 & 12 題 (選填) -->
       <div class="step" data-step="9">
         <div class="title-row">
           <h2 class="question-title">第 11 題：曾看過哪些房子有喜歡的呢？</h2>
@@ -291,6 +300,7 @@
         <textarea name="注重的細節" rows="2" placeholder="例如：採光通風、衛浴開窗、高樓層、不要車道上方..."></textarea>
       </div>
 
+      <!-- 第10頁：第 13 題 聯絡資訊 (必填) -->
       <div class="step" data-step="10">
         <div class="title-row">
           <h2 class="question-title">第 13 題：請留下您的聯絡資料</h2>
@@ -305,24 +315,14 @@
         </div>
       </div>
 
+      <!-- 導航按鈕 -->
       <div class="buttons">
         <button type="button" class="btn-prev" id="prevBtn">上一步</button>
         <button type="button" class="btn-next" id="nextBtn">下一步</button>
       </div>
-
-      <!-- 1. 關閉機器人驗證碼 -->
-      <input type="hidden" name="_captcha" value="false">
-
-      <!-- 2. 成功後跳轉的頁面 -->
-      <input type="hidden" name="_next" value="https://yh-0504.github.io/House_In_Tainan/thankyou.html">
-
-      <!-- 3. 【關鍵】將信件排版改成漂亮的表格樣式 (table) -->
-      <input type="hidden" name="_template" value="table">
-
-      <!-- 4. 自訂信件標題 (不要再顯示那串長長的網址) -->
-      <input type="hidden" name="_subject" value="【台南看好房】收到新的買方客需問卷！">
     </form>
 
+    <!-- 表尾資訊 -->
     <footer>
       <p><strong>台南看好房 - 張英泓 (小張)</strong><br>
       電話：<a href="tel:0962062425">0962062425</a> ｜ 
@@ -388,7 +388,7 @@
       const currentStepEl = steps[index];
       const stepNum = currentStepEl.getAttribute('data-step');
 
-      // 第 1 頁（第1題）：單選看房狀況
+      // 第1題
       if (stepNum === '1') {
         const checked = document.querySelector('input[name="看房狀況"]:checked');
         if (!checked) {
@@ -397,7 +397,7 @@
         }
       }
 
-      // 第 2 頁（第2題）：偏好區域多選至少一項，或填寫其他區域
+      // 第2題
       if (stepNum === '2') {
         const checked = document.querySelectorAll('input[name="地區[]"]:checked');
         const otherArea = document.getElementById('otherAreaInput').value.trim();
@@ -407,7 +407,7 @@
         }
       }
 
-      // 第 3 頁（第3題）：物件種類多選至少一項
+      // 第3題
       if (stepNum === '3') {
         const checked = document.querySelectorAll('input[name="物件種類[]"]:checked');
         if (checked.length === 0) {
@@ -416,7 +416,7 @@
         }
       }
 
-      // 第 4 頁（第5題）：車位需求單選
+      // 第5題
       if (stepNum === '4') {
         const checked = document.querySelector('input[name="車位"]:checked');
         if (!checked) {
@@ -425,7 +425,7 @@
         }
       }
 
-      // 第 5 頁（第6題）：自備款
+      // 第6題
       if (stepNum === '5') {
         const cash = document.getElementById('cashInput').value.trim();
         if (!cash) {
@@ -435,7 +435,7 @@
         }
       }
 
-      // 第 7 頁（第9題）：房間數多選至少一項
+      // 第9題
       if (stepNum === '7') {
         const checked = document.querySelectorAll('input[name="房間數[]"]:checked');
         if (checked.length === 0) {
@@ -444,7 +444,7 @@
         }
       }
 
-      // 第 8 頁（第10題）：屋齡單選
+      // 第10題
       if (stepNum === '8') {
         const checked = document.querySelector('input[name="屋齡"]:checked');
         if (!checked) {
@@ -462,19 +462,16 @@
     });
 
     nextBtn.addEventListener('click', () => {
-      // 點下一步前先檢查該頁必填是否通過
       if (!validateStep(current)) return;
 
       if (current < steps.length - 1) {
         current++;
         showStep(current);
       } else {
-        // 第10頁聯絡資料必填驗證
         if (form.reportValidity()) {
           nextBtn.textContent = '資料傳送中...';
           nextBtn.disabled = true;
 
-          // 整理多選項目為逗號分隔字串
           const getCheckedVals = (name) => 
             Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(c => c.value).join('、');
 
@@ -495,7 +492,6 @@
             注重的細節: document.querySelector('textarea[name="注重的細節"]').value
           };
 
-          // Google 部署的網頁應用程式網址
           const GAS_URL = "https://script.google.com/macros/s/AKfycbxokDmdYAnhG2ykTDP-e0IA51V-rRkE1xiU6SvsDnBj34V1qMCTo2xWjSgCVgi85Knylw/exec";
 
           fetch(GAS_URL, {
@@ -505,15 +501,6 @@
             body: JSON.stringify(formData)
           })
           .then(() => {
-            window.location.href = "https://yh-0504.github.io/House_In_Tainan/thankyou.html";
-          })
-          .catch((err) => {
-            alert('送出失敗，請直接加入小張 LINE 聯繫！');
-            nextBtn.textContent = '送出需求';
-            nextBtn.disabled = false;
-          });
-          .then(() => {
-            // 送出成功後跳轉至感謝頁
             window.location.href = "https://yh-0504.github.io/House_In_Tainan/thankyou.html";
           })
           .catch((err) => {
