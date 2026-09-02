@@ -74,7 +74,6 @@
       color: #333;
       margin: 0;
     }
-    /* 紅色小字必填標籤 */
     .badge-required {
       color: #e74c3c;
       font-size: 0.8rem;
@@ -383,76 +382,41 @@
     }
     showStep(current);
 
-    // 驗證第 1, 2, 3, 5, 6, 9, 10 題
     function validateStep(index) {
       const currentStepEl = steps[index];
       const stepNum = currentStepEl.getAttribute('data-step');
 
-      // 第1題
       if (stepNum === '1') {
         const checked = document.querySelector('input[name="看房狀況"]:checked');
-        if (!checked) {
-          alert('請選擇您看房看了多久喔！');
-          return false;
-        }
+        if (!checked) { alert('請選擇您看房看了多久喔！'); return false; }
       }
-
-      // 第2題
       if (stepNum === '2') {
         const checked = document.querySelectorAll('input[name="地區[]"]:checked');
         const otherArea = document.getElementById('otherAreaInput').value.trim();
         if (checked.length === 0 && otherArea === '') {
-          alert('請至少勾選一個偏好區域，或於下方欄位填寫其他區域！');
-          return false;
+          alert('請至少勾選一個偏好區域，或填寫其他區域！'); return false;
         }
       }
-
-      // 第3題
       if (stepNum === '3') {
         const checked = document.querySelectorAll('input[name="物件種類[]"]:checked');
-        if (checked.length === 0) {
-          alert('請至少勾選一種偏好的「物件種類」！');
-          return false;
-        }
+        if (checked.length === 0) { alert('請至少勾選一種偏好的「物件種類」！'); return false; }
       }
-
-      // 第5題
       if (stepNum === '4') {
         const checked = document.querySelector('input[name="車位"]:checked');
-        if (!checked) {
-          alert('請選擇是否有車位需求！');
-          return false;
-        }
+        if (!checked) { alert('請選擇是否有車位需求！'); return false; }
       }
-
-      // 第6題
       if (stepNum === '5') {
         const cash = document.getElementById('cashInput').value.trim();
-        if (!cash) {
-          alert('請填寫預計自備款（現金）大約多少萬喔！');
-          document.getElementById('cashInput').focus();
-          return false;
-        }
+        if (!cash) { alert('請填寫預計自備款（現金）大約多少萬喔！'); document.getElementById('cashInput').focus(); return false; }
       }
-
-      // 第9題
       if (stepNum === '7') {
         const checked = document.querySelectorAll('input[name="房間數[]"]:checked');
-        if (checked.length === 0) {
-          alert('請至少勾選一項需要的格局或透天！');
-          return false;
-        }
+        if (checked.length === 0) { alert('請至少勾選一項需要的格局或透天！'); return false; }
       }
-
-      // 第10題
       if (stepNum === '8') {
         const checked = document.querySelector('input[name="屋齡"]:checked');
-        if (!checked) {
-          alert('請選擇您希望的屋齡條件！');
-          return false;
-        }
+        if (!checked) { alert('請選擇您希望的屋齡條件！'); return false; }
       }
-
       return true;
     }
 
@@ -494,10 +458,11 @@
 
           const GAS_URL = "https://script.google.com/macros/s/AKfycbxokDmdYAnhG2ykTDP-e0IA51V-rRkE1xiU6SvsDnBj34V1qMCTo2xWjSgCVgi85Knylw/exec";
 
+          // 使用原生安全字串傳輸
           fetch(GAS_URL, {
             method: "POST",
             mode: "no-cors",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            headers: { "Content-Type": "text/plain" },
             body: JSON.stringify(formData)
           })
           .then(() => {
