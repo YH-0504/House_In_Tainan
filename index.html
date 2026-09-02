@@ -310,8 +310,17 @@
         <button type="button" class="btn-next" id="nextBtn">下一步</button>
       </div>
 
+      <!-- 1. 關閉機器人驗證碼 -->
       <input type="hidden" name="_captcha" value="false">
+
+      <!-- 2. 成功後跳轉的頁面 -->
       <input type="hidden" name="_next" value="https://yh-0504.github.io/House_In_Tainan/thankyou.html">
+
+      <!-- 3. 【關鍵】將信件排版改成漂亮的表格樣式 (table) -->
+      <input type="hidden" name="_template" value="table">
+
+      <!-- 4. 自訂信件標題 (不要再顯示那串長長的網址) -->
+      <input type="hidden" name="_subject" value="【台南看好房】收到新的買方客需問卷！">
     </form>
 
     <footer>
