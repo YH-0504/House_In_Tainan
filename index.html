@@ -7,200 +7,269 @@
   <style>
     /* 全域樣式 */
     body {
-      background-color: #d9cfc7; /* 淡版背景 */
-      font-family: "Helvetica", sans-serif;
+      background-color: #f4efe9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       color: #333;
       margin: 0;
-      padding: 0;
+      padding: 1rem 0;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      box-sizing: border-box;
     }
     .container {
       background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
       width: 90%;
-      max-width: 600px;
-      padding: 1rem 2rem;
-      position: relative;
+      max-width: 550px;
+      padding: 1.5rem 1.8rem;
+      box-sizing: border-box;
     }
     header {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 1.2rem;
     }
     header img {
-      width: 100px;
+      width: 80px;
       height: auto;
       display: block;
       margin: 0 auto 0.5rem;
     }
     header h1 {
       margin: 0;
-      font-size: 1.8rem;
-      color: #3e3e3e;
-      font-weight: bold;
+      font-size: 1.5rem;
+      color: #2c3e50;
+      font-weight: 700;
     }
     .step {
-      display: none; /* 初始隱藏所有頁 */
+      display: none;
     }
     .step.active {
       display: block;
     }
     .progress-bar {
-      height: 8px;
-      background-color: #e0e0e0;
-      border-radius: 4px;
+      height: 6px;
+      background-color: #eef0f2;
+      border-radius: 3px;
       overflow: hidden;
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
     .progress-bar-fill {
       height: 100%;
-      background-color: #4caf50;
+      background-color: #27ae60;
       width: 0%;
-      transition: width 0.3s;
+      transition: width 0.3s ease;
     }
-    label {
-      display: block;
-      margin-top: 1rem;
-      font-weight: bold;
+    .title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin: 1.2rem 0 0.5rem;
+    }
+    h2.question-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #333;
+      margin: 0;
+    }
+    /* 紅色小字必填標籤 */
+    .badge-required {
+      color: #e74c3c;
+      font-size: 0.8rem;
+      font-weight: normal;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+    .tip-box {
+      font-size: 0.85rem;
+      color: #666;
+      background: #f8f9fa;
+      border-left: 3px solid #27ae60;
+      padding: 6px 10px;
+      margin: 0.5rem 0;
+      line-height: 1.4;
     }
     .options {
       margin-top: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
     }
-    .options label {
-      display: block;
-      margin-bottom: 0.3rem;
+    .grid-options {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    label {
+      display: flex;
+      align-items: center;
+      padding: 6px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    label:hover {
+      background-color: #f7f7f7;
+    }
+    label input {
+      margin-right: 8px;
     }
     input[type="text"], input[type="number"], input[type="tel"], textarea {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.65rem;
       margin-top: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      border: 1px solid #dcdfe6;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+    input:focus, textarea:focus {
+      border-color: #27ae60;
     }
     .buttons {
       display: flex;
       justify-content: space-between;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
+      gap: 10px;
     }
     button {
+      flex: 1;
       padding: 0.75rem 1.2rem;
       border: none;
       border-radius: 6px;
       cursor: pointer;
       font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.2s;
     }
-    .btn-prev { background: #ccc; }
-    .btn-next { background: #4caf50; color: #fff; }
+    .btn-prev { background: #e0e0e0; color: #555; }
+    .btn-next { background: #27ae60; color: #fff; }
+    .btn-next:hover { background: #219150; }
     footer {
       text-align: center;
-      padding-top: 1.5rem;
+      padding-top: 1.2rem;
       border-top: 1px solid #eee;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #555;
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #666;
+      line-height: 1.5;
     }
-    footer a { color: #4caf50; text-decoration: none; }
+    footer a { color: #27ae60; text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- 表頭Logo與標題 -->
     <header>
-      <img src="台南看好房LOGO.png" alt="台南看好房 LOGO" style="width: 100px; border-radius: 10px;">
+      <img src="台南看好房LOGO.png" alt="台南看好房 LOGO">
       <h1>台南看好房</h1>
     </header>
 
-    <!-- 進度條 -->
     <div class="progress-bar">
       <div id="progressFill" class="progress-bar-fill"></div>
     </div>
 
     <form id="multiStepForm" action="https://formsubmit.co/s3737123456789@gmail.com" method="POST">
-      <!-- 第1頁 -->
-      <div class="step active">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第1題：看房看多久了呢？</h2>
+      
+      <div class="step" data-step="1">
+        <div class="title-row">
+          <h2 class="question-title">第 1 題：看房看多久了呢？</h2>
+          <span class="badge-required">*(必填)</span>
+        </div>
         <div class="options">
           <label><input type="radio" name="看房狀況" value="最近才剛開始看"> 最近才剛開始看</label>
           <label><input type="radio" name="看房狀況" value="已經看了一陣子了"> 已經看了一陣子了</label>
         </div>
       </div>
 
-      <!-- 第2頁 -->
-      <div class="step">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第2題：偏好區域 (最多選三個)</h2>
-        <div class="options" id="areaOptions"></div>
-        <input type="text" name="是否有其他區域?" placeholder="是否還有其他特定區域呢？">
+      <div class="step" data-step="2">
+        <div class="title-row">
+          <h2 class="question-title">第 2 題：偏好區域（最多選三個）</h2>
+          <span class="badge-required">*(必填)</span>
+        </div>
+        <div class="options grid-options" id="areaOptions"></div>
+        <input type="text" id="otherAreaInput" name="是否有其他區域" placeholder="若有其他特定區域請填寫於此">
       </div>
 
-      <!-- 第3頁 (3 & 4 同頁) -->
-      <div class="step">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第3題：物件的種類 (最多兩個)</h2>
-        <div class="options" id="typeOptions"></div>
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第4題：物件的類型 (最多兩個)</h2>
-        <div class="options" id="kindOptions"></div>
-      </div>
-      <!-- 新增：第4頁 -->
-      <div class="step">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第5題：是否有車位需求</h2>
-          <div class="options">
-            <label><input type="radio" name="車位" value="需求一車位"> 需求一車位</label>
-            <label><input type="radio" name="車位" value="需求一車位(不接受機械)"> 需求一車位 (不接受機械)</label>
-            <label><input type="radio" name="車位" value="需雙車位"> 需雙車位</label>
-            <label><input type="radio" name="車位" value="不需要車位"> 不需要車位</label>
-          </div>
+      <div class="step" data-step="3">
+        <div class="title-row">
+          <h2 class="question-title">第 3 題：物件的種類（最多選兩個）</h2>
+          <span class="badge-required">*(必填)</span>
+        </div>
+        <div class="options grid-options" id="typeOptions"></div>
+        
+        <div class="title-row" style="margin-top: 1.5rem;">
+          <h2 class="question-title">第 4 題：物件的用途類型（最多選兩個）</h2>
+        </div>
+        <div class="options grid-options" id="kindOptions"></div>
       </div>
 
-
-      <!-- 第5頁 -->
-      <div class="step">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第6題：自備款 (現金) 大約：(萬)</h2>
-        <input type="number" name="自備款">
-        <small>許多人不知道能負擔多少，這部分可讓小張更明確幫您規劃目標，提供給您最適合您的房源。</small>
-      </div>
-      
-      
-      <!-- 第6頁(7 & 8 同頁) -->
-      <div class="step">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第7題：個人有房或房貸嗎？</h2>
-        <p style="font-size: 0.85rem; color: #555;">
-          備註：113/9/19管制-第二間貸款5成、第三間貸款3成<br>
-          ------選填結果大大決定您貸款條件及貸款成數-----
-        </p>
+      <div class="step" data-step="4">
+        <div class="title-row">
+          <h2 class="question-title">第 5 題：是否有車位需求</h2>
+          <span class="badge-required">*(必填)</span>
+        </div>
         <div class="options">
-          <label><input type="radio" name="個人名下" value="名下無房"> 名下無房</label>
+          <label><input type="radio" name="車位" value="需求一平面車位"> 需求一車位（平面）</label>
+          <label><input type="radio" name="車位" value="需求一車位(可接受機械)"> 需求一車位（可接受機械）</label>
+          <label><input type="radio" name="車位" value="需雙車位"> 需雙車位</label>
+          <label><input type="radio" name="車位" value="不需要車位"> 不需要車位</label>
+        </div>
+      </div>
+
+      <div class="step" data-step="5">
+        <div class="title-row">
+          <h2 class="question-title">第 6 題：自備款 (現金) 大約：(萬)</h2>
+          <span class="badge-required">*(必填)</span>
+        </div>
+        <input type="number" id="cashInput" name="自備款" placeholder="請輸入金額，例如：300" min="0">
+        <div class="tip-box">在銀行限貸的時代下，現金是買房"最重要"的指標，這樣小張才能匹配最適合的房子給您。</div>
+      </div>
+
+      <div class="step" data-step="6">
+        <div class="title-row">
+          <h2 class="question-title">第 7 題：個人名下房屋與房貸狀況</h2>
+        </div>
+        <div class="tip-box">備註：配合管制，第2間貸款最高5成、第3間最高3成。這將影響您的可貸成數。</div>
+        <div class="options">
+          <label><input type="radio" name="個人名下" value="名下無房" checked> 名下無房</label>
           <label><input type="radio" name="個人名下" value="名下有房(無貸款)"> 名下有房（無貸款）</label>
-          <label><input type="radio" name="個人名下" value="名下有房(有貸款)"> 名下有房（有貸款）</label>
+          <label><input type="radio" name="個人名下" value="名下有房(有貸款)"> 名下有房（有房貸）</label>
         </div>
-        <input type="text" name="個人特殊狀況" placeholder="其他特殊狀況（可選填）">
+        <input type="text" name="個人特殊狀況" placeholder="個人其他狀況（如：繼承持分、新青安資格等）">
 
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第8題：配偶有房或房貸嗎？</h2>
+        <div class="title-row" style="margin-top: 1.5rem;">
+          <h2 class="question-title">第 8 題：配偶名下狀況</h2>
+        </div>
         <div class="options">
-          <label><input type="radio" name="配偶名下" value="配偶名下無房"> 配偶名下無房</label>
+          <label><input type="radio" name="配偶名下" value="未婚 / 配偶名下無房" checked> 未婚 / 配偶名下無房</label>
           <label><input type="radio" name="配偶名下" value="配偶名下有房(無貸款)"> 配偶名下有房（無貸款）</label>
-          <label><input type="radio" name="配偶名下" value="配偶名下有房(有貸款)"> 配偶名下有房（有貸款）</label>
+          <label><input type="radio" name="配偶名下" value="配偶名下有房(有貸款)"> 配偶名下有房（有房貸）</label>
         </div>
-        <input type="text" name="配偶特殊狀況" placeholder="其他特殊狀況（可選填）">
+        <input type="text" name="配偶特殊狀況" placeholder="配偶其他特殊狀況（選填）">
       </div>
 
-
-      <!-- 第7頁 -->
-      <div class="step">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第9題：若是大樓的話需要幾房呢？</h2>
-        <div class="options">
-          <label><input type="checkbox" name="房間數" value="我選透天"> 我選透天</label>
-          <label><input type="checkbox" name="房間數" value="1房"> 1房</label>
-          <label><input type="checkbox" name="房間數" value="2房"> 2房</label>
-          <label><input type="checkbox" name="房間數" value="3房以上"> 3房以上</label>
+      <div class="step" data-step="7">
+        <div class="title-row">
+          <h2 class="question-title">第 9 題：若是大樓的話需要幾房呢？</h2>
+          <span class="badge-required">*(必填)</span>
+        </div>
+        <div class="options" id="roomOptions">
+          <label><input type="checkbox" name="房間數[]" value="我選透天"> 我選透天</label>
+          <label><input type="checkbox" name="房間數[]" value="1房"> 1房</label>
+          <label><input type="checkbox" name="房間數[]" value="2房"> 2房</label>
+          <label><input type="checkbox" name="房間數[]" value="3房以上"> 3房以上</label>
         </div>
       </div>
 
-      <!-- 第8頁 -->
-      <div class="step">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第10題：希望的屋齡</h2>
-        <div class="options">
+      <div class="step" data-step="8">
+        <div class="title-row">
+          <h2 class="question-title">第 10 題：希望的屋齡</h2>
+          <span class="badge-required">*(必填)</span>
+        </div>
+        <div class="options" id="ageOptions">
           <label><input type="radio" name="屋齡" value="6年內"> 6年內</label>
           <label><input type="radio" name="屋齡" value="10年內"> 10年內</label>
           <label><input type="radio" name="屋齡" value="15年內"> 15年內</label>
@@ -210,112 +279,193 @@
         </div>
       </div>
 
-      <!-- 第9頁 (11 & 12 同頁) -->
-      <div class="step">
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第11題：是否曾經看過哪些房子有喜歡的呢？</h2>
-        <textarea name="是否有喜歡的房子" rows="3"></textarea>
-        <h2 style="font-size: 1.2rem; font-weight: normal; color: #333;">第12題：有無比較注重的細節呢？</h2>
-        <textarea name="注重的細節" rows="3"></textarea>
+      <div class="step" data-step="9">
+        <div class="title-row">
+          <h2 class="question-title">第 11 題：曾看過哪些房子有喜歡的呢？</h2>
+        </div>
+        <textarea name="是否有喜歡的房子" rows="2" placeholder="例如：看過某某社區格局很喜歡..."></textarea>
+        
+        <div class="title-row" style="margin-top: 1.5rem;">
+          <h2 class="question-title">第 12 題：有無比較注重的細節呢？</h2>
+        </div>
+        <textarea name="注重的細節" rows="2" placeholder="例如：採光通風、衛浴開窗、高樓層、不要車道上方..."></textarea>
       </div>
 
-      <!-- 第10頁 -->
-      <div class="step">
-        <label style="font-size:1.2rem;">第13題:請留下您的聯絡資料</label>
-        <p>小張會根據需求篩選最符合的物件給您</p>
+      <div class="step" data-step="10">
+        <div class="title-row">
+          <h2 class="question-title">第 13 題：請留下您的聯絡資料</h2>
+          <span class="badge-required">*(必填)</span>
+        </div>
+        <p style="font-size: 0.9rem; color: #666; margin: 0 0 0.5rem;">小張會根據需求篩選最符合的物件給您</p>
         <input type="text" name="姓名" placeholder="怎麼稱呼您：" required>
         <input type="tel" name="電話" placeholder="手機電話：" required>
         <input type="text" name="lineID" placeholder="LINE ID：" required>
-        <small style="display: block; margin: 1rem 0; font-size: 0.85rem; color: #555;">
-  個人資料保護協議：您所填入的資料僅授權 <strong>台南看好房 - 張英泓</strong> 本人查閱，僅用於聯絡與服務使用，不會有個資外洩之疑慮，請安心填寫。</small>
+        <div class="tip-box" style="margin-top: 1rem;">
+          個人資料保護協議：您所填入的資料僅授權 <strong>台南看好房 - 張英泓</strong> 本人查閱，僅用於聯絡與服務使用，不會有個資外洩之疑慮，請安心填寫。
+        </div>
       </div>
 
-      <!-- 導航按鈕 -->
       <div class="buttons">
         <button type="button" class="btn-prev" id="prevBtn">上一步</button>
         <button type="button" class="btn-next" id="nextBtn">下一步</button>
       </div>
+
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_next" value="https://yh-0504.github.io/House_In_Tainan/thankyou.html">
     </form>
 
-    <!-- 表尾資訊 -->
     <footer>
-      <p><strong>台南看好房 - 張英泓 (小張)</strong></p>
-      <p>電話：<a href="tel:0962062425">0962062425</a></p>
-      <p>LINE：<a href="https://line.me/ti/p/TfLABJ5yMg" target="_blank">加入小張LINE</a></p>
-      <p>永續房屋仲介企業社</p>
+      <p><strong>台南看好房 - 張英泓 (小張)</strong><br>
+      電話：<a href="tel:0962062425">0962062425</a> ｜ 
+      LINE：<a href="https://line.me/ti/p/TfLABJ5yMg" target="_blank">加入小張LINE</a><br>
+      銘星格頂不動產仲介經紀有限公司<br>
+      (112)登字第452400號</p>
     </footer>
   </div>
 
   <script>
-    // 選項資料
     const areaOpts = ["東區","北區","南區","中西區","永康區","仁德區","安南區","安平區","新營區","歸仁區","新市區","新化區","善化區","關廟區","安定區"];
     const typeOpts = ["透天","大樓","公寓(無電梯)","店面","土地","農地"];
     const kindOpts = ["住宅","套房","雅房","店面","辦公","廠房","農地","工業地","住宅地","商業地"];
 
-    // 產生多選
     function genChoices(id, opts, max) {
-  const container = document.getElementById(id);
-  let nameAttr = '';
+      const container = document.getElementById(id);
+      let nameAttr = '';
+      if (id === 'areaOptions') nameAttr = '地區[]';
+      else if (id === 'typeOptions') nameAttr = '物件種類[]';
+      else if (id === 'kindOptions') nameAttr = '物件類型[]';
 
-  // 設定每一組選項的 name
-  if (id === 'areaOptions') nameAttr = '地區[]';
-  else if (id === 'typeOptions') nameAttr = '物件種類[]';
-  else if (id === 'kindOptions') nameAttr = '物件類型[]';
-
-  opts.forEach(opt => {
-    const lbl = document.createElement('label');
-    const cb = document.createElement('input');
-    cb.type = 'checkbox';
-    cb.value = opt;
-    cb.name = nameAttr; // ✅ 有 name 才會被送出
-    cb.addEventListener('change', () => limitSel(id, max));
-    lbl.append(cb, ' ' + opt);
-    container.append(lbl);
-  });
-}
+      opts.forEach(opt => {
+        const lbl = document.createElement('label');
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.value = opt;
+        cb.name = nameAttr;
+        cb.addEventListener('change', () => limitSel(id, max));
+        lbl.append(cb, ' ' + opt);
+        container.append(lbl);
+      });
+    }
 
     function limitSel(id, max) {
       const cont = document.getElementById(id);
       const cbs = cont.querySelectorAll('input[type=checkbox]');
-      const sel = Array.from(cbs).filter(c=>c.checked);
-      cbs.forEach(c=> c.disabled = !c.checked && sel.length>=max);
+      const sel = Array.from(cbs).filter(c => c.checked);
+      cbs.forEach(c => c.disabled = !c.checked && sel.length >= max);
     }
+
     genChoices('areaOptions', areaOpts, 3);
     genChoices('typeOptions', typeOpts, 2);
     genChoices('kindOptions', kindOpts, 2);
 
-
-    // 分頁邏輯
     let current = 0;
     const steps = document.querySelectorAll('.step');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const progress = document.getElementById('progressFill');
+    const form = document.getElementById('multiStepForm');
 
     function showStep(n) {
-      steps.forEach((s,i)=> s.classList.toggle('active', i===n));
-      prevBtn.style.display = n===0 ? 'none':'inline-block';
-      nextBtn.textContent = n===steps.length-1 ? '送出' : '下一步';
-      const pct = Math.round((n)/(steps.length-1)*100);
+      steps.forEach((s, i) => s.classList.toggle('active', i === n));
+      prevBtn.style.display = n === 0 ? 'none' : 'inline-block';
+      nextBtn.textContent = n === steps.length - 1 ? '送出需求' : '下一步';
+      const pct = Math.round((n) / (steps.length - 1) * 100);
       progress.style.width = pct + '%';
     }
     showStep(current);
 
-    prevBtn.addEventListener('click', ()=>{
-      if(current>0) current--;
+    // 驗證第 1, 2, 3, 5, 6, 9, 10 題
+    function validateStep(index) {
+      const currentStepEl = steps[index];
+      const stepNum = currentStepEl.getAttribute('data-step');
+
+      // 第 1 頁（第1題）：單選看房狀況
+      if (stepNum === '1') {
+        const checked = document.querySelector('input[name="看房狀況"]:checked');
+        if (!checked) {
+          alert('請選擇您看房看了多久喔！');
+          return false;
+        }
+      }
+
+      // 第 2 頁（第2題）：偏好區域多選至少一項，或填寫其他區域
+      if (stepNum === '2') {
+        const checked = document.querySelectorAll('input[name="地區[]"]:checked');
+        const otherArea = document.getElementById('otherAreaInput').value.trim();
+        if (checked.length === 0 && otherArea === '') {
+          alert('請至少勾選一個偏好區域，或於下方欄位填寫其他區域！');
+          return false;
+        }
+      }
+
+      // 第 3 頁（第3題）：物件種類多選至少一項
+      if (stepNum === '3') {
+        const checked = document.querySelectorAll('input[name="物件種類[]"]:checked');
+        if (checked.length === 0) {
+          alert('請至少勾選一種偏好的「物件種類」！');
+          return false;
+        }
+      }
+
+      // 第 4 頁（第5題）：車位需求單選
+      if (stepNum === '4') {
+        const checked = document.querySelector('input[name="車位"]:checked');
+        if (!checked) {
+          alert('請選擇是否有車位需求！');
+          return false;
+        }
+      }
+
+      // 第 5 頁（第6題）：自備款
+      if (stepNum === '5') {
+        const cash = document.getElementById('cashInput').value.trim();
+        if (!cash) {
+          alert('請填寫預計自備款（現金）大約多少萬喔！');
+          document.getElementById('cashInput').focus();
+          return false;
+        }
+      }
+
+      // 第 7 頁（第9題）：房間數多選至少一項
+      if (stepNum === '7') {
+        const checked = document.querySelectorAll('input[name="房間數[]"]:checked');
+        if (checked.length === 0) {
+          alert('請至少勾選一項需要的格局或透天！');
+          return false;
+        }
+      }
+
+      // 第 8 頁（第10題）：屋齡單選
+      if (stepNum === '8') {
+        const checked = document.querySelector('input[name="屋齡"]:checked');
+        if (!checked) {
+          alert('請選擇您希望的屋齡條件！');
+          return false;
+        }
+      }
+
+      return true;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      if (current > 0) current--;
       showStep(current);
     });
-    nextBtn.addEventListener('click', ()=>{
-      if(current < steps.length-1) {
+
+    nextBtn.addEventListener('click', () => {
+      // 點下一步前先檢查該頁必填是否通過
+      if (!validateStep(current)) return;
+
+      if (current < steps.length - 1) {
         current++;
         showStep(current);
       } else {
-        document.getElementById('multiStepForm').submit();
+        // 第10頁聯絡資料必填驗證
+        if (form.reportValidity()) {
+          form.submit();
+        }
       }
     });
-
   </script>
 </body>
 </html>
-
