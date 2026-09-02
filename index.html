@@ -471,7 +471,48 @@
       } else {
         // 第10頁聯絡資料必填驗證
         if (form.reportValidity()) {
-          form.submit();
+          nextBtn.textContent = '資料傳送中...';
+          nextBtn.disabled = true;
+
+          // 整理多選項目為逗號分隔字串
+          const getCheckedVals = (name) => 
+            Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(c => c.value).join('、');
+
+          const formData = {
+            姓名: document.querySelector('input[name="姓名"]').value,
+            電話: document.querySelector('input[name="電話"]').value,
+            LINE_ID: document.querySelector('input[name="lineID"]').value,
+            看房狀況: document.querySelector('input[name="看房狀況"]:checked')?.value || '',
+            地區: getCheckedVals('地區[]') + (document.getElementById('otherAreaInput').value ? ` (${document.getElementById('otherAreaInput').value})` : ''),
+            物件種類: getCheckedVals('物件種類[]'),
+            車位: document.querySelector('input[name="車位"]:checked')?.value || '',
+            自備款: document.getElementById('cashInput').value,
+            個人名下: document.querySelector('input[name="個人名下"]:checked')?.value || '',
+            配偶名下: document.querySelector('input[name="配偶名下"]:checked')?.value || '',
+            房間數: getCheckedVals('房間數[]'),
+            屋齡: document.querySelector('input[name="屋齡"]:checked')?.value || '',
+            喜歡的房子: document.querySelector('textarea[name="是否有喜歡的房子"]').value,
+            注重的細節: document.querySelector('textarea[name="注重的細節"]').value
+          };
+
+          // Google 部署的網頁應用程式網址
+          const GAS_URL = "https://script.google.com/macros/s/AKfycbxokDmdYAnhG2ykTDP-e0IA51V-rRkE1xiU6SvsDnBj34V1qMCTo2xWjSgCVgi85Knylw/exec";
+
+          fetch(GAS_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData)
+          })
+          .then(() => {
+            // 送出成功後跳轉至感謝頁
+            window.location.href = "https://yh-0504.github.io/House_In_Tainan/thankyou.html";
+          })
+          .catch((err) => {
+            alert('送出失敗，請直接加入小張 LINE 聯繫！');
+            nextBtn.textContent = '送出需求';
+            nextBtn.disabled = false;
+          });
         }
       }
     });
