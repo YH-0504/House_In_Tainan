@@ -501,9 +501,17 @@
           fetch(GAS_URL, {
             method: "POST",
             mode: "no-cors",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
             body: JSON.stringify(formData)
           })
+          .then(() => {
+            window.location.href = "https://yh-0504.github.io/House_In_Tainan/thankyou.html";
+          })
+          .catch((err) => {
+            alert('送出失敗，請直接加入小張 LINE 聯繫！');
+            nextBtn.textContent = '送出需求';
+            nextBtn.disabled = false;
+          });
           .then(() => {
             // 送出成功後跳轉至感謝頁
             window.location.href = "https://yh-0504.github.io/House_In_Tainan/thankyou.html";
